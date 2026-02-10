@@ -114,7 +114,7 @@ con la base de datos sin utilizar SQL directo.
 ## 📂 Estructura del Proyecto
 
 ```text
-m3-l3-blog/
+m7-l3-blog/
 │
 ├── blog_platform/
 │   ├── blog_platform/
