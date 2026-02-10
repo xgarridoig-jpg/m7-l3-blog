@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h2>Artículos publicados</h2>
+
+{% for articulo in articulos %}
+    <article>
+        <h3>{{ articulo.titulo }}</h3>
+        <p><strong>Mito principal:</strong> {{ articulo.mito_principal }}</p>
+        <p><strong>Autor:</strong> {{ articulo.autor.nombre }}</p>
+        <p>{{ articulo.contenido|truncatechars:200 }}</p>
+        <hr>
+    </article>
+{% empty %}
+    <p>No hay artículos disponibles.</p>
+{% endfor %}
+
+{% endblock %}
