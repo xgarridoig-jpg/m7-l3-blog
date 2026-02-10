@@ -1,48 +1,119 @@
 # Blog de Mitología Chilota
 
-## Módulo
-**Acceso a datos en Aplicaciones Python-Django**
-
-## Experiencia de Aprendizaje
-Actividad N°3 – Módulo 7
-
-## Tipo
-Encargo académico
+**Módulo:** Acceso a datos en Aplicaciones Python-Django  
+**Actividad:** Experiencia de Aprendizaje N°3 – Módulo 7  
+**Autor:** Ximena Garrido  
 
 ---
 
-## Descripción del proyecto
+## 📖 Descripción del Proyecto
 
-Este proyecto consiste en el desarrollo de una aplicación web utilizando el
-framework **Django** y una base de datos **PostgreSQL**, cuyo objetivo es diseñar,
-implementar y consultar un modelo de datos mediante el ORM de Django.
+Este proyecto corresponde al desarrollo de una aplicación web backend utilizando
+el framework **Django** y una base de datos **PostgreSQL**, cuyo objetivo principal
+es modelar y gestionar información mediante el **ORM de Django**.
 
-La aplicación corresponde a un **blog cultural** enfocado en la **mitología
-chilota**, donde se gestionan **autores** y **artículos** asociados a mitos
-tradicionales del archipiélago de Chiloé.
-
-El proyecto permite realizar operaciones **CRUD completas** sobre las entidades
-definidas y visualizar los contenidos en una página pública con un diseño
-simple y coherente con la temática cultural.
+La aplicación implementa un **blog cultural** enfocado en la **mitología chilota**,
+permitiendo la gestión de **autores** y **artículos**, así como la ejecución de
+consultas ORM para operaciones CRUD directamente desde la terminal.
 
 ---
 
-## Tecnologías utilizadas
+## 🛠 Tecnologías Utilizadas
 
 - Python 3  
 - Django  
 - PostgreSQL  
-- ORM de Django  
-- HTML5  
-- CSS3  
+- Django ORM  
 - Git y GitHub  
 
 ---
 
-## Estructura del proyecto
+## 🚀 Pasos Seguidos para el Desarrollo
 
+A continuación se describen los pasos técnicos realizados para el desarrollo
+del proyecto, desde la configuración inicial hasta la interacción con la base
+de datos mediante el ORM.
+
+### 1. Creación del Proyecto y Entorno
+
+- Se creó un repositorio Git y se clonó en el entorno local.
+- Se creó y activó un entorno virtual para aislar dependencias.
+- Se instaló Django y el driver de PostgreSQL.
+- Se creó el proyecto Django mediante:
+
+```bash
+django-admin startproject blog_platform
 ```
 
+* Se creó la aplicación principal del proyecto:
+
+```bash
+python manage.py startapp blog
+```
+
+---
+
+### 2. Configuración de la Base de Datos PostgreSQL
+
+* Se creó una base de datos local llamada `blog_chilote` en PostgreSQL.
+* En el archivo `settings.py` se configuró la conexión a PostgreSQL,
+  reemplazando SQLite por defecto, indicando motor, nombre de la base de datos,
+  usuario, contraseña, host y puerto.
+
+---
+
+### 3. Definición del Modelo de Datos
+
+* En el archivo `models.py` de la aplicación `blog` se definieron los modelos:
+
+  * **Autor**, con campos para nombre, biografía y región.
+  * **Articulo**, con campos para título, contenido, mito principal, fecha de
+    creación y una relación `ForeignKey` hacia Autor.
+* Se implementó el método `__str__` para mejorar la visualización de los registros
+  en el panel de administración.
+
+---
+
+### 4. Migraciones
+
+* Se generaron los archivos de migración con:
+
+```bash
+python manage.py makemigrations
+```
+
+* Se aplicaron las migraciones a la base de datos PostgreSQL con:
+
+```bash
+python manage.py migrate
+```
+
+---
+
+### 5. Consultas ORM desde Django Shell
+
+* Se accedió a la consola interactiva de Django mediante:
+
+```bash
+python manage.py shell
+```
+
+* Desde la terminal se realizaron consultas ORM para:
+
+  * Listar registros (READ)
+  * Filtrar datos
+  * Obtener registros específicos
+  * Actualizar registros (UPDATE)
+  * Eliminar registros (DELETE)
+
+Estas operaciones demuestran el uso correcto del ORM de Django para interactuar
+con la base de datos sin utilizar SQL directo.
+
+---
+
+## 📂 Estructura del Proyecto
+
+```text
 m3-l3-blog/
 │
 ├── blog_platform/
@@ -52,73 +123,39 @@ m3-l3-blog/
 │   │   └── ...
 │   │
 │   ├── blog/
+│   │   ├── migrations/
 │   │   ├── models.py
 │   │   ├── views.py
 │   │   ├── urls.py
 │   │   ├── admin.py
 │   │   ├── templates/
-│   │   │   └── blog/
-│   │   │       ├── base.html
-│   │   │       └── home.html
 │   │   └── static/
-│   │       └── blog/
-│   │           └── css/
-│   │               └── style.css
 │   │
 │   └── manage.py
 │
-├── evidencias
+├── evidencias/
+│   ├── orm_shell_inicio.png
+│   ├── orm_autores_all.png
+│   ├── orm_articulos_all.png
+│   ├── orm_filtro_autor.png
+│   ├── orm_get_articulo.png
+│   ├── orm_update_articulo.png
+│   └── orm_delete_articulo.png
+│
 └── README.md
-
 ```
 
 ---
-
-## Modelos implementados
-
-### Autor
-- Nombre
-- Biografía
-- Región
-
-### Artículo
-- Título
-- Contenido
-- Mito principal
-- Autor (ForeignKey)
-- Fecha de creación
-
----
-
-## Pasos realizados
-
-1. Creación del proyecto Django
-2. Creación de la aplicación `blog`
-3. Configuración de PostgreSQL en `settings.py`
-4. Definición de modelos en `models.py`
-5. Ejecución de migraciones
-6. Registro de modelos en el panel de administración
-7. Creación de registros mediante Django Admin y Django Shell
-8. Implementación de operaciones CRUD usando el ORM
-9. Creación de vistas públicas
-10. Implementación de templates HTML
-11. Aplicación de estilos CSS
-12. Visualización del blog en el navegador
-
----
-
 
 ## 📸 Evidencias – Consultas ORM en la Terminal
 
 A continuación se presentan capturas de pantalla de la terminal que muestran
 las consultas realizadas mediante el **ORM de Django** utilizando **Django Shell**.
-Las consultas evidencian operaciones de lectura, filtrado y actualización
-sobre los modelos definidos en la aplicación.
+Las evidencias corresponden a operaciones CRUD sobre los modelos definidos.
 
 ---
 
 ### 🔹 Acceso a Django Shell
-
 
 **Consulta utilizada:**
 
@@ -127,21 +164,20 @@ python manage.py shell
 ```
 
 📷 **Evidencia:**
-
 ![Acceso a Django Shell](evidencias/orm_shell_inicio.png)
+
 ---
 
 ### 🔹 Consulta ORM – Listado de Autores (READ)
 
 **Consulta utilizada:**
 
-```
+```python
 Autor.objects.all()
 ```
 
 📷 **Evidencia:**
-
-![Listado de Autores ORM](evidencias\orm_autores_all.png)
+![Listado de Autores ORM](evidencias/orm_autores_all.png)
 
 ---
 
@@ -154,9 +190,7 @@ Articulo.objects.all()
 ```
 
 📷 **Evidencia:**
-
 ![Listado de Articulos ORM](evidencias/orm_articulos_all.png)
-
 
 ---
 
@@ -169,9 +203,7 @@ Articulo.objects.filter(autor__nombre__icontains="coloane")
 ```
 
 📷 **Evidencia:**
-
 ![Filtro de Articulos por Autor ORM](evidencias/orm_filtro_autor.png)
-
 
 ---
 
@@ -184,9 +216,7 @@ Articulo.objects.get(titulo__icontains="trauco")
 ```
 
 📷 **Evidencia:**
-
 ![Get Articulo ORM](evidencias/orm_get_articulo.png)
-
 
 ---
 
@@ -201,17 +231,14 @@ articulo.save()
 ```
 
 📷 **Evidencia:**
-
-
 ![Update Articulo ORM](evidencias/orm_update_articulo.png)
 
 ---
 
 ### 🔹 Consulta ORM – Eliminación de un Artículo (DELETE)
 
-
-
 **Consulta utilizada:**
+
 ```python
 Articulo.objects.filter(titulo__icontains="pincoya").delete()
 ```
@@ -220,11 +247,5 @@ Articulo.objects.filter(titulo__icontains="pincoya").delete()
 ![Delete Articulo ORM](evidencias/orm_delete_articulo.png)
 
 ---
-
-## Autor del proyecto
-
-**Ximena Garrido**
-
 Proyecto académico desarrollado con fines educativos.
-
 
